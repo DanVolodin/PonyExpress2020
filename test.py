@@ -9,5 +9,10 @@ def square(a):
     return [4 * a, a * a, a * sqrt(2)]
 
 
-x = int(input())
-print(even(x), square(x))
+def first_last(a):
+    return [a[0], a[-1]]
+
+
+lst = input().split()
+
+print(first_last(lst))
