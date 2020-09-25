@@ -13,6 +13,17 @@ def first_last(a):
     return [a[0], a[-1]]
 
 
+def repeat(a):
+    s = set()
+    for x in a:
+        if x in s:
+            return True
+        s.add(x)
+    return False
+
+
 lst = input().split()
 
+
 print(first_last(lst))
+print(repeat(lst))
