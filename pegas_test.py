@@ -47,7 +47,7 @@ def log_in(driver_path):
         print('ok')
 
     print('Step 2:', end=' ')
-    element_login.send_keys('log')
+    element_login.send_keys(correct_login)
     element_password.send_keys(correct_password)
     enter_button.click()
     try:
