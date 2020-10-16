@@ -142,10 +142,31 @@ def click_editing_user_groups_button(driver):
 
         editing_user_groups_button.click()
 
-        editing_user_groups_page_heading = WebDriverWait(driver, 10).until(
+        element_editing_user_groups_page_heading = WebDriverWait(driver, 10).until(
             EC.presence_of_element_located((By.XPATH, '//*[@id="root"]/section/section[2]/section/div/h1')))
 
-        if editing_user_groups_page_heading.text != 'Редактирование групп пользователей':
+        if element_editing_user_groups_page_heading.text != 'Редактирование групп пользователей':
+            raise
+    except:
+        driver.close()
+        return 0
+    else:
+        return driver
+
+
+def click_creating_group_button(driver):
+    try:
+
+        creating_group_button = WebDriverWait(driver, 10).until(
+            EC.visibility_of_element_located((By.XPATH,
+            '//*[@id="root"]/section/section[2]/section/section/div/div/div[1]/div[1]/button[1]')))
+
+        creating_group_button.click()
+
+        element_creating_group_heading = WebDriverWait(driver, 10).until(
+            EC.presence_of_element_located((By.XPATH, '/html/body/div[3]/div/div[2]/div/div[1]/h4/span')))
+
+        if element_creating_group_heading.text != 'Создание группы пользователей':
             raise
     except:
         driver.close()
@@ -289,6 +310,51 @@ def test_case_5(driver_path):
 def test_case_6(driver_path):
     test_num(6)
 
+    driver = log_in(driver_path)
+    if driver_off(driver):
+        return
+
+    step(3)
+    try:
+        driver = click_menu_button(driver)
+        if driver_off(driver):
+            raise
+
+        driver = click_service_button(driver)
+        if driver_off(driver):
+            raise
+
+        driver = click_hosting_management_button(driver)
+        if driver_off(driver):
+            raise
+    except:
+        not_ok()
+        return
+    else:
+        ok()
+
+    step(4)
+    try:
+        driver = click_editing_user_groups_button(driver)
+        if driver_off(driver):
+            raise
+    except:
+        not_ok()
+        return
+    else:
+        ok()
+
+    step(5)
+    try:
+        driver = click_creating_group_button(driver)
+        if driver_off(driver):
+            raise
+    except:
+        not_ok()
+        return
+    else:
+        ok()
+
 
 if __name__ == "__main__":
     driver_path = ''
@@ -296,4 +362,5 @@ if __name__ == "__main__":
     test_case_2(driver_path)
     test_case_3(driver_path)
     test_case_5(driver_path)
+    test_case_6(driver_path)
 
