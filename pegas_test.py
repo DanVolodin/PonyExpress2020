@@ -30,6 +30,10 @@ def test_num(n):
     print('Test', n)
 
 
+def driver_off(driver):
+    return driver == 0
+
+
 def pony_driver_init(driver_path):
     driver = webdriver.Safari()
     driver.get(pegas_url)
@@ -44,6 +48,7 @@ def pony_driver_init(driver_path):
 
 
 def log_in(driver_path):
+
     step(1)
     try:
         driver = pony_driver_init(driver_path)
@@ -78,7 +83,6 @@ def log_in(driver_path):
 
         menu_button = WebDriverWait(driver, 10).until(
             EC.visibility_of_element_located((By.CLASS_NAME, 'bp3-intent-success')))
-
     except:
         not_ok()
         driver.close()
@@ -89,19 +93,83 @@ def log_in(driver_path):
     return driver
 
 
+def click_menu_button(driver):
+    try:
+        menu_button = WebDriverWait(driver, 10).until(
+            EC.visibility_of_element_located((By.CLASS_NAME, 'bp3-intent-success')))
+
+        menu_button.click()
+    except:
+        driver.close()
+        return 0
+    else:
+        return driver
+
+
+def click_service_button(driver):
+    try:
+        service_button = WebDriverWait(driver, 10).until(
+            EC.visibility_of_element_located((By.XPATH,
+            '/html/body/div[3]/div/div/div/div[2]/ul/li[7]/span/span/a')))
+
+        service_button.click()
+    except:
+        driver.close()
+        return 0
+    else:
+        return driver
+
+
+def click_hosting_management_button(driver):
+    try:
+        hosting_management_button = WebDriverWait(driver, 10).until(
+            EC.visibility_of_element_located((By.XPATH,
+            '/html/body/div[3]/div/div/div/div[2]/ul/li[7]/span/div/div/div/div/ul/li[1]/span/span/a/div')))
+
+        hosting_management_button.click()
+    except:
+        driver.close()
+        return 0
+    else:
+        return driver
+
+
+def click_editing_user_groups_button(driver):
+    try:
+        editing_user_groups_button = WebDriverWait(driver, 10).until(
+            EC.visibility_of_element_located((By.XPATH,
+            '/html/body/div[3]/div/div/div/div[2]/ul/li[7]/span/div/div/div/div/ul/li[1]/span/div/div/div/div/ul/li[1]/a')))
+
+        editing_user_groups_button.click()
+
+        editing_user_groups_page_heading = WebDriverWait(driver, 10).until(
+            EC.presence_of_element_located((By.XPATH, '//*[@id="root"]/section/section[2]/section/div/h1')))
+
+        if editing_user_groups_page_heading.text != 'Редактирование групп пользователей':
+            raise
+    except:
+        driver.close()
+        return 0
+    else:
+        return driver
+
+
 def test_case_1(driver_path):
     test_num(1)
+
     driver = log_in(driver_path)
+
     time.sleep(10)
-    if driver == 0:
+    if driver_off(driver):
         return
     driver.close()
 
 
 def test_case_2(driver_path):
     test_num(2)
+
     driver = log_in(driver_path)
-    if driver == 0:
+    if driver_off(driver):
         return
 
     step(3)
@@ -137,8 +205,9 @@ def test_case_3(driver_path):
     step(1)
     try:
         driver = pony_driver_init(driver_path)
-        if driver == 0:
-            return 0
+        if driver_off(driver):
+            not_ok()
+            return
 
         element_login = WebDriverWait(driver, 10).until(
             EC.presence_of_element_located((By.NAME, 'login')))
@@ -151,7 +220,7 @@ def test_case_3(driver_path):
     except:
         not_ok()
         driver.close()
-        return 0
+        return
     else:
         ok()
 
@@ -161,9 +230,9 @@ def test_case_3(driver_path):
     element_password.send_keys(incorrect_password)
     enter_button.click()
     try:
-        incorrect_data = WebDriverWait(driver, 10).until(
+        warning = WebDriverWait(driver, 10).until(
             EC.presence_of_element_located((By.CLASS_NAME, 'css-hnp1e7')))
-        if incorrect_data.text != 'Неверный логин или пароль':
+        if warning.text != 'Неверный логин или пароль':
             raise
     except:
         not_ok()
@@ -178,56 +247,47 @@ def test_case_3(driver_path):
 
 def test_case_5(driver_path):
     test_num(5)
+
     driver = log_in(driver_path)
-    if driver == 0:
+    if driver_off(driver):
         return
 
     step(3)
     try:
-        menu_button = WebDriverWait(driver, 10).until(
-            EC.visibility_of_element_located((By.CLASS_NAME, 'bp3-intent-success')))
+        driver = click_menu_button(driver)
+        if driver_off(driver):
+            raise
 
-        menu_button.click()
+        driver = click_service_button(driver)
+        if driver_off(driver):
+            raise
 
-        service_button = WebDriverWait(driver, 10).until(
-            EC.visibility_of_element_located((By.XPATH,
-            '/html/body/div[3]/div/div/div/div[2]/ul/li[7]/span/span/a')))
-
-        service_button.click()
-
-        hosting_management_button = WebDriverWait(driver, 10).until(
-            EC.visibility_of_element_located((By.XPATH,
-            '/html/body/div[3]/div/div/div/div[2]/ul/li[7]/span/div/div/div/div/ul/li[1]/span/span/a/div')))
+        driver = click_hosting_management_button(driver)
+        if driver_off(driver):
+            raise
     except:
         not_ok()
-        driver.close()
         return
     else:
         ok()
 
     step(4)
-    hosting_management_button.click()
     try:
-        editing_user_groups_button = WebDriverWait(driver, 10).until(
-            EC.visibility_of_element_located((By.XPATH,
-            '/html/body/div[3]/div/div/div/div[2]/ul/li[7]/span/div/div/div/div/ul/li[1]/span/div/div/div/div/ul/li[1]/a')))
-
-        editing_user_groups_button.click()
-
-        editing_user_groups_page_heading = WebDriverWait(driver, 10).until(
-            EC.presence_of_element_located((By.XPATH, '//*[@id="root"]/section/section[2]/section/div/h1')))
-
-        if editing_user_groups_page_heading.text != 'Редактирование групп пользователей':
+        driver = click_editing_user_groups_button(driver)
+        if driver_off(driver):
             raise
     except:
         not_ok()
-        driver.close()
         return
     else:
         ok()
 
     time.sleep(10)
     driver.close()
+
+
+def test_case_6(driver_path):
+    test_num(6)
 
 
 if __name__ == "__main__":
