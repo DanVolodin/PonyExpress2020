@@ -158,7 +158,6 @@ def click_editing_user_groups_button(driver):
 
 def click_creating_group_button(driver):
     try:
-
         creating_group_button = WebDriverWait(driver, 10).until(
             EC.visibility_of_element_located((By.XPATH,
             '//*[@id="root"]/section/section[2]/section/section/div/div/div[1]/div[1]/button[1]')))
@@ -183,7 +182,6 @@ def check_group_existence(driver, name):
             EC.presence_of_all_elements_located((By.XPATH, '//*[@id="search-input"]')))
         time.sleep(3)
 
-        element_search.click()
         element_search.send_keys(name)
         time.sleep(3)
 
