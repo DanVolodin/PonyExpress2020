@@ -183,6 +183,7 @@ def check_group_existence(driver, name):
             EC.presence_of_all_elements_located((By.XPATH, '//*[@id="search-input"]')))
         time.sleep(3)
 
+        element_search.click()
         element_search.send_keys(name)
         time.sleep(3)
 
@@ -190,7 +191,7 @@ def check_group_existence(driver, name):
             EC.presence_of_all_elements_located((By.XPATH,
             '//*[@id="root"]/section/section[2]/section/section/div/div/div[2]/div[1]/table/tbody/tr[1]/td[2]')))
         time.sleep(3)
-        
+
         if element_group_name.text != name:
             raise
     except:
