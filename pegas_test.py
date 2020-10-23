@@ -179,24 +179,33 @@ def click_creating_group_button(driver):
 def check_group_existence(driver, name):
     try:
         element_search = WebDriverWait(driver, 10).until(
-            EC.presence_of_all_elements_located((By.XPATH, '//*[@id="search-input"]')))
-        time.sleep(3)
+            EC.presence_of_element_located((By.XPATH, '//*[@id="search-input"]')))
 
         element_search.send_keys(name)
-        time.sleep(3)
 
         element_group_name = WebDriverWait(driver, 10).until(
-            EC.presence_of_all_elements_located((By.XPATH,
+            EC.presence_of_element_located((By.XPATH,
             '//*[@id="root"]/section/section[2]/section/section/div/div/div[2]/div[1]/table/tbody/tr[1]/td[2]')))
-        time.sleep(3)
 
         if element_group_name.text != name:
             raise
     except:
-        driver.close()
         return False
     else:
         return True
+
+
+def check_group_created(driver, name):
+    try:
+        element_warning = WebDriverWait(driver, 10).until(
+            EC.presence_of_element_located((By.XPATH, '/html/body/div[2]/div/div/span')))
+
+        if element_warning.text != ('UserProfileGroup already exists with "DisplayName": "' + name + '"'):
+            raise
+    except:
+        return True
+    else:
+        return False
 
 
 def test_case_1(driver_path):
@@ -407,11 +416,14 @@ def test_case_6(driver_path):
 
     step(7)
     try:
-        if check_group_existence(driver, random_name) == False:
+        if not check_group_created(driver, random_name):
+            raise
+
+        if not check_group_existence(driver, random_name):
             raise
     except:
         not_ok()
-        #driver.close()
+        driver.close()
         return
     else:
         ok()
@@ -431,7 +443,7 @@ def test_case_6(driver_path):
         delete_group_button.click()
 
         element_deleting_group_heading = WebDriverWait(driver, 10).until(
-            EC.presence_of_all_elements_located((By.XPATH, '/html/body/div[4]/div/div[2]/div/div[1]/h4/span')))
+            EC.presence_of_element_located((By.XPATH, '/html/body/div[4]/div/div[2]/div/div[1]/h4/span')))
 
         if element_deleting_group_heading.text != 'Удаление группы пользователей':
             raise
@@ -445,7 +457,7 @@ def test_case_6(driver_path):
             raise
     except:
         not_ok()
-        #driver.close()
+        driver.close()
         return
     else:
         ok()
@@ -453,11 +465,12 @@ def test_case_6(driver_path):
     time.sleep(10)
     driver.close()
 
+
 if __name__ == "__main__":
     driver_path = ''
-    #test_case_1(driver_path)
-    #test_case_2(driver_path)
-    #test_case_3(driver_path)
-    #test_case_5(driver_path)
+    test_case_1(driver_path)
+    test_case_2(driver_path)
+    test_case_3(driver_path)
+    test_case_5(driver_path)
     test_case_6(driver_path)
 
