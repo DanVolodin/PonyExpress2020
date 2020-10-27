@@ -45,7 +45,7 @@ def test_():
         if f.driver_off(driver):
             raise
     except:
-        f.not_ok()
+        not_ok()
         return
     else:
         ok()
