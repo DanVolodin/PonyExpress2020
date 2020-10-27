@@ -63,7 +63,7 @@ def test_():
 
     step(6)
     try:
-        element_group_name =  WebDriverWait(driver, 10).until(
+        element_group_name = WebDriverWait(driver, 10).until(
             EC.presence_of_element_located((By.XPATH,
             '/html/body/div[3]/div/div[2]/div/div[2]/form/div[1]/div/div/input')))
 
