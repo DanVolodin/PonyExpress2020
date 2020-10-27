@@ -20,16 +20,12 @@ def test_():
     if f.driver_off(driver):
         return
 
-    step(3)
     try:
-        f.open_71_arrival_without_sort_page(driver)
+        driver = f.open_71_arrival_without_sort_page(driver)
         if f.driver_off(driver):
             raise
     except:
-        not_ok()
         return
-    else:
-        ok()
 
     time.sleep(5)
     driver.close()
