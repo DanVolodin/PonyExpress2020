@@ -204,6 +204,9 @@ def open_71_arrival_without_sort_page(driver):
         if driver_off(driver):
             raise
 
+        time.sleep(3)
+        driver.switch_to_window(driver.window_handles[1])
+
         element_block_data_heading = WebDriverWait(driver, 10).until(
             EC.presence_of_element_located((By.XPATH, '/html/body/div[3]/div/div[2]/div/div[1]/h4/span')))
 
