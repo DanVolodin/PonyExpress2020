@@ -186,7 +186,7 @@ def click_71_arrival_without_sort_button(driver):
         return driver
 
 
-def open_71_arrival_without_sort_page(driver):
+def open_71_arrival_without_sort_form(driver):
     try:
         click_menu_button(driver)
         if driver_off(driver):
@@ -219,3 +219,58 @@ def open_71_arrival_without_sort_page(driver):
         return 0
     else:
         return driver
+
+
+def click_continue_without_courier_button(driver):
+    try:
+        continue_without_courier_button = WebDriverWait(driver, 10).until(
+            EC.visibility_of_element_located((By.XPATH,
+            '/html/body/div[3]/div/div[2]/div/div[2]/div/div[1]/div[1]/button[2]')))
+
+        continue_without_courier_button.click()
+
+        page_arrival_without_sort_heading = WebDriverWait(driver, 10).until(
+            EC.presence_of_element_located((By.XPATH,
+            '//*[@id="root"]/section/section[2]/section/section/div[1]/h1')))
+
+        if page_arrival_without_sort_heading.text != '71. Прибыл на склад (без сортировки)':
+            raise
+
+        element_block_num = WebDriverWait(driver, 10).until(
+            EC.presence_of_element_located((By.XPATH,
+            '//*[@id="root"]/section/section[2]/section/section/div[2]/div[2]/div[2]/div/div[1]/div[1]/div[2]/div/div/div')))
+
+        if element_block_num.text == '':
+            raise
+    except:
+        driver.close()
+        return 0
+    else:
+        return driver
+
+
+def open_71_arrival_without_sort_page(driver):
+    step(3)
+    try:
+        open_71_arrival_without_sort_form(driver)
+        if driver_off(driver):
+            raise
+    except:
+        not_ok()
+        driver.close()
+        return 0
+    else:
+        ok()
+
+    step(4)
+    try:
+        click_continue_without_courier_button(driver)
+        if driver_off(driver):
+            raise
+    except:
+        not_ok()
+        return 0
+    else:
+        ok()
+
+    return driver
