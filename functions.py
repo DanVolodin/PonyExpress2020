@@ -143,3 +143,76 @@ def check_group_created(driver, name):
         return True
     else:
         return False
+
+
+def click_production_button(driver):
+    try:
+        production_button = WebDriverWait(driver, 10).until(
+            EC.visibility_of_element_located((By.XPATH, '/html/body/div[3]/div/div/div/div[2]/ul/li[1]/span/span/a')))
+
+        production_button.click()
+    except:
+        driver.close()
+        return 0
+    else:
+        return driver
+
+
+def click_event_registration_button(driver):
+    try:
+        event_registration_button = WebDriverWait(driver, 10).until(
+            EC.visibility_of_element_located((By.XPATH,
+            '/html/body/div[3]/div/div/div/div[2]/ul/li[1]/span/div/div/div/div/ul/li[1]/span/span/a')))
+
+        event_registration_button.click()
+    except:
+        driver.close()
+        return 0
+    else:
+        return driver
+
+
+def click_71_arrival_without_sort_button(driver):
+    try:
+        _71_arrival_without_sort_button = WebDriverWait(driver, 10).until(
+            EC.visibility_of_element_located((By.XPATH,
+            '/html/body/div[3]/div/div/div/div[2]/ul/li[1]/span/div/div/div/div/ul/li[1]/span/div/div[2]/div/div/ul/li[1]/a')))
+
+        _71_arrival_without_sort_button.click()
+    except:
+        driver.close()
+        return 0
+    else:
+        return driver
+
+
+def open_71_arrival_without_sort_page(driver):
+    try:
+        click_menu_button(driver)
+        if driver_off(driver):
+            raise
+
+        click_production_button(driver)
+        if driver_off(driver):
+            raise
+
+        click_event_registration_button(driver)
+        if driver_off(driver):
+            raise
+
+        click_71_arrival_without_sort_button(driver)
+        if driver_off(driver):
+            raise
+
+        element_block_data_heading = WebDriverWait(driver, 10).until(
+            EC.presence_of_element_located((By.XPATH, '/html/body/div[3]/div/div[2]/div/div[1]/h4/span')))
+
+        print(element_block_data_heading.text)
+
+        if element_block_data_heading.text != 'Ввод данных о блоке':
+            raise
+    except:
+        driver.close()
+        return 0
+    else:
+        return driver
