@@ -5,25 +5,27 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
+import paths as pth
+
 
 def ok():
-    with open('logfile', 'a') as logfile:
+    with open(pth.logfile, 'a') as logfile:
         logfile.write('ok\n')
 
 
 def not_ok():
-    with open('logfile', 'a') as logfile:
+    with open(pth.logfile, 'a') as logfile:
         logfile.write('not ok\n')
 
 
 def step(n):
-    with open('logfile', 'a') as logfile:
+    with open(pth.logfile, 'a') as logfile:
         s = '\t Step ' + str(n) + ': '
         logfile.write(s)
 
 
 def test_num(n):
-    with open('logfile', 'a') as logfile:
+    with open(pth.logfile, 'a') as logfile:
         s = 'Test ' + str(n) + '\n'
         logfile.write(s)
 
@@ -204,7 +206,7 @@ def open_71_arrival_without_sort_form(driver):
         if driver_off(driver):
             raise
 
-        time.sleep(5)
+        time.sleep(3)
         driver.switch_to_window(driver.window_handles[1])
 
         element_block_data_heading = WebDriverWait(driver, 10).until(
