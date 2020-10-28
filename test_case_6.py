@@ -7,6 +7,7 @@ from selenium.webdriver.support import expected_conditions as EC
 
 import login
 import paths as pth
+from paths import wait_time as wt
 import functions as f
 from functions import ok
 from functions import not_ok
@@ -135,10 +136,9 @@ def test_():
     else:
         ok()
 
-    time.sleep(5)
+    time.sleep(wt)
     driver.close()
 
 
 if __name__ == "__main__":
-    logfile = open('logfile.txt', 'w')
     test_()
