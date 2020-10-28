@@ -204,13 +204,11 @@ def open_71_arrival_without_sort_form(driver):
         if driver_off(driver):
             raise
 
-        time.sleep(3)
+        time.sleep(5)
         driver.switch_to_window(driver.window_handles[1])
 
         element_block_data_heading = WebDriverWait(driver, 10).until(
             EC.presence_of_element_located((By.XPATH, '/html/body/div[3]/div/div[2]/div/div[1]/h4/span')))
-
-        print(element_block_data_heading.text)
 
         if element_block_data_heading.text != 'Ввод данных о блоке':
             raise
@@ -252,7 +250,7 @@ def click_continue_without_courier_button(driver):
 def open_71_arrival_without_sort_page(driver):
     step(3)
     try:
-        open_71_arrival_without_sort_form(driver)
+        driver = open_71_arrival_without_sort_form(driver)
         if driver_off(driver):
             raise
     except:
@@ -264,7 +262,7 @@ def open_71_arrival_without_sort_page(driver):
 
     step(4)
     try:
-        click_continue_without_courier_button(driver)
+        driver = click_continue_without_courier_button(driver)
         if driver_off(driver):
             raise
     except:
