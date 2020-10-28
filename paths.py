@@ -1,6 +1,7 @@
 browser = 'Safari'
 driver_path = ''
 pegas_url = 'http://pegasus-edu.pegasus.ponyex.local/'
+logfile = 'logfile.txt'
 
 correct_login = 'ext.mgu_education'
 correct_password = 'rg#P5hZm4F'
@@ -11,3 +12,5 @@ incorrect_password = '0000'
 incorrect_block_num = '11-1111-1111'
 
 random_name = 'fgnmkc123'
+
+wait_time = 5
