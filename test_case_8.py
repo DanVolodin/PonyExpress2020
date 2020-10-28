@@ -7,6 +7,7 @@ from selenium.webdriver.support import expected_conditions as EC
 
 import login
 import paths as pth
+from paths import wait_time as wt
 import functions as f
 from functions import ok
 from functions import not_ok
@@ -32,5 +33,5 @@ def test_():
 
 
 if __name__ == "__main__":
-    logfile = open('logfile.txt', 'w')
+    logfile = open('logfile.txt', 'a')
     test_()
