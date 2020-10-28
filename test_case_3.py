@@ -8,6 +8,7 @@ from selenium.webdriver.support import expected_conditions as EC
 import login
 import paths as pth
 import functions as f
+from paths import wait_time as wt
 from functions import ok
 from functions import not_ok
 from functions import step
@@ -40,7 +41,7 @@ def test_():
 
     step(2)
     element_login.send_keys(pth.incorrect_login)
-    time.sleep(2)  # иначе может вводить всё в одно поле
+    time.sleep(1)  # иначе может вводить всё в одно поле
     element_password.send_keys(pth.incorrect_password)
     enter_button.click()
     try:
@@ -55,7 +56,7 @@ def test_():
     else:
         ok()
 
-    time.sleep(5)
+    time.sleep(wt)
     driver.close()
 
 
