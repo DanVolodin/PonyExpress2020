@@ -52,9 +52,8 @@ def test_():
         ok()
 
     time.sleep(wt)
-    driver.close()
+    f.close_driver(driver)
 
 
 if __name__ == "__main__":
-    logfile = open('logfile.txt', 'w')
     test_()
