@@ -22,9 +22,9 @@ def test_():
     time.sleep(wt)
     if f.driver_off(driver):
         return
-    driver.close()
+    f.close_driver(driver)
 
 
 if __name__ == "__main__":
-    logfile = open('logfile.txt', 'w')
     test_()
+
