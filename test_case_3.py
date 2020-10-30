@@ -34,7 +34,7 @@ def test_():
             EC.presence_of_element_located((By.CLASS_NAME, 'css-1hnkt5t')))
     except:
         not_ok()
-        driver.close()
+        f.close_driver(driver)
         return
     else:
         ok()
@@ -51,15 +51,14 @@ def test_():
             raise
     except:
         not_ok()
-        driver.close()
+        f.close_driver(driver)
         return
     else:
         ok()
 
     time.sleep(wt)
-    driver.close()
+    f.close_driver(driver)
 
 
 if __name__ == "__main__":
-    logfile = open('logfile.txt', 'w')
     test_()
