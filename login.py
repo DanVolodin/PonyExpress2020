@@ -24,7 +24,7 @@ def pony_driver_init():
         title = WebDriverWait(driver, 10).until(
                 EC.title_is('Пегас'))
     except:
-        driver.close()
+        f.close_driver(driver)
         return 0
     else:
         return driver
@@ -48,7 +48,7 @@ def log_in():
             EC.presence_of_element_located((By.CLASS_NAME, 'css-1hnkt5t')))
     except:
         not_ok()
-        driver.close()
+        f.close_driver(driver)
         return 0
     else:
         ok()
@@ -68,7 +68,7 @@ def log_in():
             EC.visibility_of_element_located((By.CLASS_NAME, 'bp3-intent-success')))
     except:
         not_ok()
-        driver.close()
+        f.close_driver(driver)
         return 0
     else:
         ok()
