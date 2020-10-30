@@ -28,7 +28,7 @@ def test_():
     except:
         return
 
-    time.sleep(5)
+    time.sleep(wt)
     f.close_driver(driver)
 
 
