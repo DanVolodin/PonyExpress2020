@@ -83,7 +83,7 @@ def test_():
             raise
     except:
         not_ok()
-        driver.close()
+        f.close_driver(driver)
         return
     else:
         ok()
@@ -97,7 +97,7 @@ def test_():
             raise
     except:
         not_ok()
-        driver.close()
+        f.close_driver(driver)
         return
     else:
         ok()
@@ -131,13 +131,13 @@ def test_():
             raise
     except:
         not_ok()
-        driver.close()
+        f.close_driver(driver)
         return
     else:
         ok()
 
     time.sleep(wt)
-    driver.close()
+    f.close_driver(driver)
 
 
 if __name__ == "__main__":
