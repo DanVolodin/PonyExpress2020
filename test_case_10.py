@@ -42,15 +42,22 @@ def test_():
 
         if element_warning.text != 'Parameter HostName can not be empty':
             raise
+        
+        element_block = WebDriverWait(driver, 10).until(
+            EC.presence_of_element_located((By.XPATH,
+            '//*[@id="root"]/section/section[2]/section/section/div[2]/div[3]/div[2]/div/div')))
+
+        if element_block.get_attribute('style') != 'background-color: rgb(194, 48, 48);':
+            raise
     except:
         not_ok()
-        driver.close()
+        f.close_driver(driver)
         return
     else:
         ok()
 
     time.sleep(wt)
-    driver.close()
+    f.close_driver(driver)
 
 
 if __name__ == "__main__":
