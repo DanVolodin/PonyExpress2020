@@ -34,7 +34,7 @@ def test_():
             EC.presence_of_element_located((By.XPATH,
             '//*[@id="root"]/section/section[2]/section/section/div[2]/div[3]/div[2]/div/div/div[3]/form/input')))
 
-        element_block_num.send_keys(pth.incorrect_block_num)
+        element_block_num.send_keys(pth.incorrect_71_block_num)
         element_block_num.send_keys('\n')
 
         element_warning = WebDriverWait(driver, 10).until(
