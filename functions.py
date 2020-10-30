@@ -34,6 +34,12 @@ def driver_off(driver):
     return driver == 0
 
 
+def close_driver(driver):
+    for d in driver.window_handles:
+        driver.switch_to_window(d)
+        driver.close()
+
+
 def click_menu_button(driver):
     try:
         menu_button = WebDriverWait(driver, 10).until(
@@ -41,7 +47,7 @@ def click_menu_button(driver):
 
         menu_button.click()
     except:
-        driver.close()
+        close_driver(driver)
         return 0
     else:
         return driver
@@ -55,7 +61,7 @@ def click_service_button(driver):
 
         service_button.click()
     except:
-        driver.close()
+        close_driver(driver)
         return 0
     else:
         return driver
@@ -69,7 +75,7 @@ def click_hosting_management_button(driver):
 
         hosting_management_button.click()
     except:
-        driver.close()
+        close_driver(driver)
         return 0
     else:
         return driver
@@ -89,7 +95,7 @@ def click_editing_user_groups_button(driver):
         if element_editing_user_groups_page_heading.text != 'Редактирование групп пользователей':
             raise
     except:
-        driver.close()
+        close_driver(driver)
         return 0
     else:
         return driver
@@ -97,6 +103,7 @@ def click_editing_user_groups_button(driver):
 
 def click_creating_group_button(driver):
     try:
+        time.sleep(1)
         creating_group_button = WebDriverWait(driver, 10).until(
             EC.visibility_of_element_located((By.XPATH,
             '//*[@id="root"]/section/section[2]/section/section/div/div/div[1]/div[1]/button[1]')))
@@ -109,7 +116,7 @@ def click_creating_group_button(driver):
         if element_creating_group_heading.text != 'Создание группы пользователей':
             raise
     except:
-        driver.close()
+        close_driver(driver)
         return 0
     else:
         return driver
@@ -154,7 +161,7 @@ def click_production_button(driver):
 
         production_button.click()
     except:
-        driver.close()
+        close_driver(driver)
         return 0
     else:
         return driver
@@ -168,7 +175,7 @@ def click_event_registration_button(driver):
 
         event_registration_button.click()
     except:
-        driver.close()
+        close_driver(driver)
         return 0
     else:
         return driver
@@ -182,7 +189,7 @@ def click_71_arrival_without_sort_button(driver):
 
         _71_arrival_without_sort_button.click()
     except:
-        driver.close()
+        close_driver(driver)
         return 0
     else:
         return driver
@@ -190,23 +197,23 @@ def click_71_arrival_without_sort_button(driver):
 
 def open_71_arrival_without_sort_form(driver):
     try:
-        click_menu_button(driver)
+        driver = click_menu_button(driver)
         if driver_off(driver):
             raise
 
-        click_production_button(driver)
+        driver = click_production_button(driver)
         if driver_off(driver):
             raise
 
-        click_event_registration_button(driver)
+        driver = click_event_registration_button(driver)
         if driver_off(driver):
             raise
 
-        click_71_arrival_without_sort_button(driver)
+        driver = click_71_arrival_without_sort_button(driver)
         if driver_off(driver):
             raise
 
-        time.sleep(3)
+        time.sleep(7)
         driver.switch_to_window(driver.window_handles[1])
 
         element_block_data_heading = WebDriverWait(driver, 10).until(
@@ -215,7 +222,7 @@ def open_71_arrival_without_sort_form(driver):
         if element_block_data_heading.text != 'Ввод данных о блоке':
             raise
     except:
-        driver.close()
+        close_driver(driver)
         return 0
     else:
         return driver
@@ -243,7 +250,7 @@ def click_continue_without_courier_button(driver):
         if element_block_num.text == '':
             raise
     except:
-        driver.close()
+        close_driver(driver)
         return 0
     else:
         return driver
@@ -257,7 +264,7 @@ def open_71_arrival_without_sort_page(driver):
             raise
     except:
         not_ok()
-        driver.close()
+        close_driver(driver)
         return 0
     else:
         ok()
