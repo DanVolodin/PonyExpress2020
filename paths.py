@@ -18,3 +18,19 @@ wait_time = 0
 
 destination_1 = '1202'
 
+urls = ['http://configurations-backend-edu.pegasus.ponyex.local/',
+        'http://couriers-backend-edu.pegasus.ponyex.local/',
+        'http://delivery-edu.pegasus.ponyex.local/',
+        'http://delivery-backend-edu.pegasus.ponyex.local/',
+        'http://enumerations-backend-edu.pegasus.ponyex.local/',
+        'http://events-edu.pegasus.ponyex.local/',
+        'http://events-backend-edu.pegasus.ponyex.local/',
+        'http://geography-edu.pegasus.ponyex.local/',
+        'http://geography-backend-edu.pegasus.ponyex.local/',
+        'http://localizations-backend-edu.pegasus.ponyex.local/',
+        'http://organization-backend-edu.pegasus.ponyex.local/',
+        'http://warehouses-edu.pegasus.ponyex.local/',
+        'http://warehouses-backend-edu.pegasus.ponyex.local/',
+        'http://waybills-backend-edu.pegasus.ponyex.local/']
+
+swagger_tail = 'api/manual/index.html'
