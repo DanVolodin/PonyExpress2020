@@ -409,6 +409,7 @@ def open_79_included_in_consolidation_page(driver, destination):
         if driver_off(driver):
             raise
 
+        time.sleep(1)
         element_choose_destination_heading = WebDriverWait(driver, 10).until(
             EC.visibility_of_element_located((By.XPATH, '/html/body/div[4]/div/div[2]/div/div[1]/h4/span')))
 
@@ -419,19 +420,18 @@ def open_79_included_in_consolidation_page(driver, destination):
         return 0
     else:
         ok()
-    time.sleep(2)
+
     step(5)
     try:
         driver = _79_included_in_consolidation_search_destination(driver, destination)
         if driver_off(driver):
             raise
 
-        time.sleep(3)
+        time.sleep(1)
         element_destination_number = WebDriverWait(driver, 10).until(
             EC.visibility_of_element_located((By.XPATH,
             '/html/body/div[4]/div/div[2]/div/div[2]/div/div[2]/div[1]/table/tbody/tr/td[2]')))
 
-        time.sleep(3)
         if element_destination_number.text != destination:
             raise
     except:
@@ -439,7 +439,7 @@ def open_79_included_in_consolidation_page(driver, destination):
         return 0
     else:
         ok()
-    time.sleep(2)
+
     step(6)
     try:
         driver = _79_included_in_consolidation_add_destination(driver)
@@ -456,8 +456,9 @@ def open_79_included_in_consolidation_page(driver, destination):
         return 0
     else:
         ok()
-    time.sleep(4)
+
     step(7)
+    time.sleep(1)
     try:
         driver = click_79_included_in_consolidation_next_button(driver)
         if driver_off(driver):
@@ -491,27 +492,14 @@ def open_79_included_in_consolidation_page(driver, destination):
     return driver
 
 
-def _79_included_in_consolidation_enter_number(driver):
+def _79_included_in_consolidation_enter_number(driver, block_num):
     try:
         element_block_num = WebDriverWait(driver, 10).until(
             EC.presence_of_element_located((By.XPATH,
             '//*[@id="root"]/section/section[2]/section/section/div[2]/div[3]/div[2]/div/div/div[3]/form/input')))
 
-        element_block_num.send_keys(pth.incorrect_79_block_num)
+        element_block_num.send_keys(block_num)
         element_block_num.send_keys('\n')
-
-        element_warning = WebDriverWait(driver, 10).until(
-            EC.presence_of_element_located((By.XPATH, '/html/body/div[2]/div/div[3]/span')))
-
-        if element_warning.text != 'Parameter HostName can not be empty':
-            raise
-
-        element_block = WebDriverWait(driver, 10).until(
-            EC.presence_of_element_located((By.XPATH,
-            '//*[@id="root"]/section/section[2]/section/section/div[2]/div[3]/div[2]/div/div')))
-
-        if element_block.get_attribute('style') != 'background-color: rgb(194, 48, 48);':
-            raise
     except:
         close_driver(driver)
         return 0
@@ -519,27 +507,14 @@ def _79_included_in_consolidation_enter_number(driver):
         return driver
 
 
-def _79_included_in_consolidation_full_screen_enter_number(driver):
+def _79_included_in_consolidation_full_screen_enter_number(driver, block_num):
     try:
         element_block_num = WebDriverWait(driver, 10).until(
             EC.presence_of_element_located((By.XPATH,
             '/html/body/div[4]/div/div[2]/div/div[2]/div/div/form/input')))
 
-        element_block_num.send_keys(pth.incorrect_79_block_num)
+        element_block_num.send_keys(block_num)
         element_block_num.send_keys('\n')
-
-        element_warning = WebDriverWait(driver, 10).until(
-            EC.presence_of_element_located((By.XPATH, '/html/body/div[2]/div/div[1]/span')))
-
-        if element_warning.text != 'Parameter HostName can not be empty':
-            raise
-
-        element_block = WebDriverWait(driver, 10).until(
-            EC.presence_of_element_located((By.XPATH,
-            '/html/body/div[4]/div/div[2]/div/div[2]/div')))
-
-        if element_block.get_attribute('style') != 'background-color: rgb(194, 48, 48);':
-            raise
     except:
         close_driver(driver)
         return 0
