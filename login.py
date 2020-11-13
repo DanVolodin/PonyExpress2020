@@ -18,7 +18,7 @@ def pony_driver_init():
     if pth.browser == 'Firefox':
         driver = webdriver.Firefox(executable_path=pth.driver_path)
     if pth.browser == 'Chrome':
-        driver = driver = webdriver.Chrome(executable_path=pth.driver_path)
+        driver = webdriver.Chrome(executable_path=pth.driver_path)
     driver.get(pth.pegas_url)
     try:
         title = WebDriverWait(driver, 10).until(
