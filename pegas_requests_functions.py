@@ -18,12 +18,26 @@ def get_token():
     return json.loads(r.text)['access_token']
 
 
+def get_request(token, num, api, params):
+    if params == {}:
+        r = requests.get(urls[num] + api, headers={'Authorization': f'Bearer {token}'})
+    else:
+        r = requests.get(urls[num] + api, headers={'Authorization': f'Bearer {token}'}, params=params)
+    return r
+
+
 def request_configurations_get_all(token):
-    r = requests.get(urls[0] + '/api/v1/configurations/get-all', headers={'Authorization': f'Bearer {token}'})
+    r = get_request(token, 0, '/api/v1/configurations/get-all', {})
     return json.loads(r.text)
+
+
+def get_courier_by_id(token, courier_id):
+    r = get_request(token, 1, '/api/v1/couriers/get-courier-by-id/{id}', {'id': courier_id})
+    return r.text
 
 
 if __name__ == "__main__":
     tok = get_token()
     print(request_configurations_get_all(tok))
+    print(get_courier_by_id(tok, '359afb0c-b870-4610-9233-524db1d5a029'))
 
