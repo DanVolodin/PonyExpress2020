@@ -39,7 +39,8 @@ def get_token():
     step(0)
     try:
         r = requests.post(url, data=data, headers=headers)
-        json.loads(r.text)
+        if r.status_code != 200:
+            raise
     except:
         not_ok()
         return -1
@@ -48,11 +49,11 @@ def get_token():
         return json.loads(r.text)['access_token']
 
 
-def get_request(token, num, api, params=None):
+def get_request(token, num_url, api, params=None):
     if params is None:
-        r = requests.get(urls[num] + api, headers={'Authorization': f'Bearer {token}'})
+        r = requests.get(urls[num_url] + api, headers={'Authorization': f'Bearer {token}'})
     else:
-        r = requests.get(urls[num] + api, headers={'Authorization': f'Bearer {token}'}, params=params)
+        r = requests.get(urls[num_url] + api, headers={'Authorization': f'Bearer {token}'}, params=params)
     return r
 
 
