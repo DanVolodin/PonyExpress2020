@@ -73,6 +73,11 @@ def get_couriers(token, page_index, page_size, sort_direction=0, search=''):
     return r
 
 
+def get_sending_all_condition_parameters(token):
+    r = get_request(token, 12, '/api/v1/condition-parameters/get-all')
+    return r
+
+
 if __name__ == "__main__":
     tok = get_token()
 
