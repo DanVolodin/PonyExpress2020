@@ -19,7 +19,7 @@ def test_():
 
     step(1)
     try:
-        r = f.get_sending_all_condition_parameters(tok)
+        r = f.get_sending_condition_parameters(tok)
         if r.status_code != 200:
             raise
     except:
@@ -30,7 +30,7 @@ def test_():
 
     r = json.loads(r.text)
     condition_parameters_1 = list()
-    with open('sending_all_condition_parameters.txt', 'r') as file:
+    with open('sending_condition_parameters.txt', 'r') as file:
         condition_parameters_1 = json.load(file)
     condition_parameters_2 = list()
     for parameters in r['result']:
