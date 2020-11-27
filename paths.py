@@ -12,7 +12,7 @@ incorrect_password = '0000'
 incorrect_71_block_num = '11-1111-1111'
 incorrect_79_block_num = '99-9999-9999/999'
 
-random_name = 'fgnmkc123'
+random_name = 'fgnmkc1234'
 
 wait_time = 0
 
@@ -31,6 +31,11 @@ urls = ['http://configurations-backend-edu.pegasus.ponyex.local/', #0
         'http://organization-backend-edu.pegasus.ponyex.local/',   #10
         'http://warehouses-edu.pegasus.ponyex.local/',             #11
         'http://warehouses-backend-edu.pegasus.ponyex.local/',     #12
-        'http://waybills-backend-edu.pegasus.ponyex.local/']       #13
+        'http://waybills-backend-edu.pegasus.ponyex.local/',       #13
+        '']                                                        #14
 
 swagger_tail = 'api/manual/index.html'
+
+url_get_groups_list = 'http://srv-pnew-01-test.ponyex.local:1001/api/v1/user-profile-groups/get-limit/1000'
+url_group_delete = 'http://srv-pnew-01-test.ponyex.local:1001/api/v1/user-profile-groups/delete-item'
+url_group_post = 'http://srv-pnew-01-test.ponyex.local:1001/api/v1/user-profile-groups/post-item'
