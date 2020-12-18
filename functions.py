@@ -232,7 +232,7 @@ def click_continue_without_courier_button(driver):
     try:
         continue_without_courier_button = WebDriverWait(driver, 10).until(
             EC.visibility_of_element_located((By.XPATH,
-            '/html/body/div[3]/div/div[2]/div/div[2]/div/div[1]/div[1]/button[2]')))
+            '/html/body/div[3]/div/div[2]/div/div[2]/div/div/div[1]/div[1]/button[2]')))
 
         continue_without_courier_button.click()
 
@@ -269,6 +269,7 @@ def open_71_arrival_without_sort_page(driver):
     else:
         ok()
 
+    time.sleep(1)
     step(4)
     try:
         driver = click_continue_without_courier_button(driver)
