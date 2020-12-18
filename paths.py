@@ -3,7 +3,7 @@ driver_path = ''
 pegas_url = 'http://pegasus-edu.pegasus.ponyex.local/'
 logfile = 'logfile.txt'
 
-correct_login = 'ext.mgu_education'
+correct_login = 'ext.mgu2_education'
 correct_password = 'rg#P5hZm4F'
 
 incorrect_login = 'abacaba'
