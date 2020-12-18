@@ -1,7 +1,5 @@
-Test 4
-	 Step 0: ok
+Test 8
 	 Step 1: ok
 	 Step 2: ok
 	 Step 3: ok
-	 Step 4: ok
-	 Step 5: ok
+	 Step 4: not ok
