@@ -10,7 +10,8 @@ correct_password = 'rg#P5hZm4F'
 incorrect_login = 'abacaba'
 incorrect_password = '0000'
 
-incorrect_71_block_num = '11-1111-1112'
+incorrect_71_block_num_1 = '11-1111-1112'
+incorrect_71_block_num_2 = '0012345666'
 incorrect_79_block_num = '99-9999-9999/999'
 
 correct_71_block_num = '11-1111-1111'
