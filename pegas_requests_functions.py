@@ -36,7 +36,6 @@ def get_token():
             'client_secret': 'secret'}
     url = "http://srv-pnew-02-test:1001/auth/connect/token"
 
-    step(0)
     try:
         r = requests.post(url, data=data, headers=headers)
         if r.status_code != 200:
@@ -134,7 +133,7 @@ def delete_group(token, group_id):
 
 def create_event_blocks_71(token):
     data = {"description": ""}
-    r = post_request(token, 6, 'api/v1/event-blocks71/post-item', data=data)
+    r = post_request(token, 6, '/api/v1/event-blocks71/post-item', data=data)
     return r
 
 
@@ -144,7 +143,19 @@ def create_event_blocks_71_object(token, block_id, scanned_number):
             "scannedNumber": scanned_number,
             "hostName": pth.random_name
             }
-    r = post_request(token, 6, 'api/v1/pegasus-events71/post-item', data=data)
+    r = post_request(token, 6, '/api/v1/pegasus-events71/post-item', data=data)
+    return r
+
+
+def get_event_blocks_71_object(token, block_id, object_id):
+    params = {"id": object_id}
+    r = get_request(token, 6, f'/api/v1/pegasus-events71/get-events-by-event-block-id/{block_id}', params=params)
+    return r
+
+
+def delete_event_blocks_71_object(token, block_id, object_id):
+    params = {"id": object_id}
+    r = delete_request(token, 6, f'/api/v1/pegasus-events71/delete-item/{block_id}', params=params)
     return r
 
 
