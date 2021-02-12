@@ -1,6 +1,19 @@
-Test 9
-	 Step 0: ok
-	 Step 1: ok
-	 Step 2: ok
-	 Step 3: ok
-	 Step 4: ok
+
+ok
+ok
+ok
+ok
+ok
+ok
+ok
+ok
+ok
+ok
+ok
+ok
+ok
+ok
+ok
+ok
+ok
+ok
