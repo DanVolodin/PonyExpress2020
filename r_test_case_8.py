@@ -1,5 +1,7 @@
 import requests
 import json
+import allure
+import pytest
 
 import paths as pth
 from paths import urls
@@ -11,35 +13,18 @@ from pegas_requests_functions import step
 
 
 def test_():
-    f.test_num(8)
-
     tok = f.get_token()
-    if tok == -1:
-        return
+    with allure.step('step 0: '):
+        assert tok != -1, 'get_token fail'
 
-    step(1)
-    try:
-        r = f.create_event_blocks_71(tok)
-        if r.status_code != 200:
-            raise
-    except:
-        not_ok()
-        return
-    else:
-        ok()
+    r = f.create_event_blocks_71(tok)
+    with allure.step('step 1: '):
+        assert r.status_code == 200, 'create_event_blocks_71 fail'
 
     r = json.loads(r.text)
-    block_id = r['result']['id']
-
-    step(2)
-    try:
-        if not block_id:
-            raise
-    except:
-        not_ok()
-        return
-    else:
-        ok()
+    block_id = r['result']['number']
+    with allure.step('step 2: '):
+        assert block_id[0:3] == 'MOW', 'invalid block_id'
 
 
 if __name__ == "__main__":
@@ -51,6 +36,6 @@ if __name__ == "__main__":
         Результат: Код 200
     Шаг 1: Создание блока событий "71. Прибыл на склад (без сортировки)" без курьера
         Результат: Код 200
-    Шаг 2: Проверка, что полученный id блока непустой
-        Результат: id блока непустой
+    Шаг 2: Проверка, что номер полученного блока корректен
+        Результат: number блока начинается с 'MOW'
 """
