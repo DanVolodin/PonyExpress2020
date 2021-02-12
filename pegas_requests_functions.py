@@ -34,7 +34,7 @@ def get_token():
             'scope': 'pegasus',
             'client_id': 'pegasus-v2',
             'client_secret': 'secret'}
-    url = "http://srv-pnew-01-test:1001/auth/connect/token"
+    url = "http://srv-pnew-02-test:1001/auth/connect/token"
 
     step(0)
     try:
