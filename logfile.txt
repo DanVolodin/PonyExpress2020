@@ -3,5 +3,4 @@ Test 9
 	 Step 1: ok
 	 Step 2: ok
 	 Step 3: ok
-	 Step 4: not ok
-not ok
+	 Step 4: ok
