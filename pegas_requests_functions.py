@@ -126,6 +126,20 @@ def delete_group(token, group_id):
     return r
 
 
+def create_event_blocks_71(token):
+    r = post_request(token, 6, 'api/v1/event-blocks71/post-item', {"description": ""})
+    return r
+
+
+def create_event_blocks_71_object(token, block_id, scanned_number):
+    r = post_request(token, 6, 'api/v1/pegasus-events71/post-item',
+                     {"eventBlockId": block_id,
+                      "pointId": "07c5c96a-6f52-428d-9332-0004c296067e",
+                      "scannedNumber": scanned_number})
+    return r
+
+
 if __name__ == "__main__":
     tok = get_token()
     print(check_group_existence(tok, 'Бета-тестеры'))
+
