@@ -82,13 +82,17 @@ def request_configurations_get_all(token):
 
 
 def get_courier_by_id(token, courier_id):
-    r = get_request(token, 1, f'/api/v1/couriers/get-courier-by-id/ {courier_id}', {'id': courier_id})
+    params = {'id': courier_id}
+    r = get_request(token, 1, f'/api/v1/couriers/get-courier-by-id/ {courier_id}', params=params)
     return r
 
 
 def get_couriers(token, page_index, page_size, sort_direction=0, search=''):
-    r = get_request(token, 1, '/api/v1/couriers/get-couriers',
-                    {'PageIndex': page_index, 'PageSize': page_size, 'SortDirection': sort_direction, 'Search': search})
+    params = {'PageIndex': page_index,
+              'PageSize': page_size,
+              'SortDirection': sort_direction,
+              'Search': search}
+    r = get_request(token, 1, '/api/v1/couriers/get-couriers', params=params)
     return r
 
 
@@ -117,25 +121,30 @@ def check_group_existence(token, group_name):
 
 
 def create_group(token, group_name):
-    r = post_request(token, 14, pth.url_group_post, {'displayName': group_name})
+    data = {'displayName': group_name}
+    r = post_request(token, 14, pth.url_group_post, data=data)
     return r
 
 
 def delete_group(token, group_id):
-    r = delete_request(token, 14, pth.url_group_delete, {'id': group_id})
+    params = {'id': group_id}
+    r = delete_request(token, 14, pth.url_group_delete, params=params)
     return r
 
 
 def create_event_blocks_71(token):
-    r = post_request(token, 6, 'api/v1/event-blocks71/post-item', {"description": ""})
+    data = {"description": ""}
+    r = post_request(token, 6, 'api/v1/event-blocks71/post-item', data=data)
     return r
 
 
 def create_event_blocks_71_object(token, block_id, scanned_number):
-    r = post_request(token, 6, 'api/v1/pegasus-events71/post-item',
-                     {"eventBlockId": block_id,
-                      "pointId": "07c5c96a-6f52-428d-9332-0004c296067e",
-                      "scannedNumber": scanned_number})
+    data = {"eventBlockId": block_id,
+            "pointId": "07c5c96a-6f52-428d-9332-0004c296067e",
+            "scannedNumber": scanned_number,
+            "hostName": pth.random_name
+            }
+    r = post_request(token, 6, 'api/v1/pegasus-events71/post-item', data=data)
     return r
 
 
