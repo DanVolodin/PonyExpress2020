@@ -1,5 +1,5 @@
-browser = 'Chrome'
-driver_path = 'C:\\Users\\Admin\\Downloads\\chromedriver_win32\\chromedriver.exe'
+browser = 'Safari'
+driver_path = ''
 #For my PC 'C:\\Users\\Admin\\Downloads\\chromedriver_win32\\chromedriver.exe'
 pegas_url = 'http://pegasus-edu.pegasus.ponyex.local/'
 logfile = 'logfile.txt'
