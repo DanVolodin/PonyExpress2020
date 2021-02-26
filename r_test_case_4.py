@@ -3,12 +3,8 @@ import json
 import allure
 
 import paths as pth
-from paths import urls
 
 import pegas_requests_functions as f
-from pegas_requests_functions import ok
-from pegas_requests_functions import not_ok
-from pegas_requests_functions import step
 
 
 def test_():
