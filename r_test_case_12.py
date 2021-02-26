@@ -51,12 +51,12 @@ def test_():
     print(json.loads(r.text))
 
     r = f.get_event_blocks_71_object(tok, block_id, object_id)
-    with allure.step('step 5'):
+    with allure.step('step 8'):
         assert r.status_code == 200, 'get_event_blocks_71_object fail'
 
     r = json.loads(r.text)
     find_ok = r['ok']
-    with allure.step('step 6: '):
+    with allure.step('step 9: '):
         assert not find_ok, 'object found'
 
 
@@ -81,5 +81,8 @@ if __name__ == "__main__":
         Результат: r['ok'] = true
     Шаг 7: Удаление объекта по id
         Результат: Код 200
-    Шаг 8: 
+    Шаг 8: Запрос объекта по id
+        Результат: Код 200
+    Шаг 9: Проверка, что объект не найден
+        Результат: r['ok'] = false 
 """
