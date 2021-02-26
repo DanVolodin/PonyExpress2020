@@ -1,9 +1,11 @@
 import requests
 import json
 import allure
+import pytest
 
 import paths as pth
-from paths import urls
+
+import pegas_requests_functions as f
 
 import pegas_requests_functions as f
 from pegas_requests_functions import ok
