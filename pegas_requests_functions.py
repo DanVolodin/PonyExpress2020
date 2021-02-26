@@ -41,10 +41,8 @@ def get_token():
         if r.status_code != 200:
             raise
     except:
-        not_ok()
         return -1
     else:
-        ok()
         return json.loads(r.text)['access_token']
 
 
