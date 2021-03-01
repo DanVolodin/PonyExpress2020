@@ -1,27 +1,23 @@
 import pytest
+import allure
+import pytest
 import time
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-import login
 import paths as pth
-from paths import wait_time as wt
 import functions as f
-from functions import ok
-from functions import not_ok
-from functions import step
+import login
+from paths import wait_time as wt
 
 
 def test_():
-    f.test_num(5)
-
     driver = login.log_in()
     if f.driver_off(driver):
         return
 
-    step(3)
     try:
         driver = f.click_menu_button(driver)
         if f.driver_off(driver):
@@ -35,21 +31,18 @@ def test_():
         if f.driver_off(driver):
             raise
     except:
-        not_ok()
-        return
-    else:
-        ok()
+        f.close_driver(driver)
+        with allure.step('step 3: '):
+            assert 0, 'fail step 3'
 
-    step(4)
     try:
         driver = f.click_editing_user_groups_button(driver)
         if f.driver_off(driver):
             raise
     except:
-        not_ok()
-        return
-    else:
-        ok()
+        f.close_driver(driver)
+        with allure.step('step 4: '):
+            assert 0, 'fail step 4'
 
     time.sleep(wt)
     f.close_driver(driver)
