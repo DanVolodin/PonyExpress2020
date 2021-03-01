@@ -9,17 +9,17 @@ import pegas_requests_functions as f
 
 
 def test_():
-    tok = f.get_token()
     with allure.step('step 0: '):
+        tok = f.get_token()
         assert tok != -1, 'get_token fail'
 
-    r = f.create_event_blocks_79(tok, pth.destinationPointId_1202)
     with allure.step('step 1: '):
+        r = f.create_event_blocks_79(tok, pth.destinationPointId_1202)
         assert r.status_code == 200, 'create_event_blocks_79 fail'
 
-    r = json.loads(r.text)
-    destination_point = r['result']['destinationPoint']['code']
     with allure.step('step 2: '):
+        r = json.loads(r.text)
+        destination_point = r['result']['destinationPoint']['code']
         assert destination_point == '1202', 'invalid destinationPoint'
 
 
