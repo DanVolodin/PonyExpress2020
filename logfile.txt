@@ -1,20 +1,3 @@
-
-ok
-ok
-ok
-ok
-ok
-ok
-ok
-ok
-ok
-ok
-ok
-ok
-ok
-ok
-ok
-ok
-ok
-ok
-ok
+Test 1
+	 Step 1: ok
+	 Step 2: ok
