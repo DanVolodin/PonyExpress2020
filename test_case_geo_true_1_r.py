@@ -14,11 +14,11 @@ def test_():
         assert tok != -1, 'get_token fail'
 
     with allure.step('step 1: '):
-        r = f.get_adress_by_id(tok, pth.correct_adress_id)
+        r = f.get_address_by_id(tok, pth.correct_adress_id)
         r = json.loads(r.text)
         ok = r['ok']
         fail_message = r['metadata']
-        assert ok and fail_message is None, 'wrong adress id'
+        assert ok and fail_message is None, 'wrong address id'
 
 
 if __name__ == "__main__":
