@@ -15,7 +15,6 @@ def test_():
 
     with allure.step('step 1: '):
         r = f.get_address_by_id(tok, pth.incorrect_adress_id)
-        print(r)
         r = json.loads(r.text)
         ok = r['ok']
         fail_message = r['metadata']['message']
