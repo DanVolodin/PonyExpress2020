@@ -169,8 +169,13 @@ def create_event_blocks_79_object(token, block_id, scanned_number):
             "pointId": "07c5c96a-6f52-428d-9332-0004c296067e",
             "scannedNumber": scanned_number,
             "hostname": pth.random_name
-    }
+            }
     r = post_request(token, 6, '/api/v1/pegasus-events71/post-item', data=data)
     return r
 
+
+def get_adress_by_id(token, adress_id):
+    params = {"id": adress_id}
+    r = get_request(token, 8, f'/api/v1/addresses/get-by-id/{adress_id}', params=params)
+    return r
 
