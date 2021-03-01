@@ -9,37 +9,37 @@ import pegas_requests_functions as f
 
 
 def test_():
-    tok = f.get_token()
     with allure.step('step 0: '):
+        tok = f.get_token()
         assert tok != -1, 'get_token fail'
 
-    r = f.create_event_blocks_71(tok)
     with allure.step('step 1: '):
+        r = f.create_event_blocks_71(tok)
         assert r.status_code == 200, 'create_event_blocks_71 fail'
 
-    r = json.loads(r.text)
-    block_number = r['result']['number']
     with allure.step('step 2: '):
+        r = json.loads(r.text)
+        block_number = r['result']['number']
         assert block_number[0:3] == 'MOW', 'invalid block_id'
 
-    block_id = r['result']['id']
-    r = f.create_event_blocks_71_object(tok, block_id, pth.correct_71_block_num)
     with allure.step('step 3'):
+        block_id = r['result']['id']
+        r = f.create_event_blocks_71_object(tok, block_id, pth.correct_71_block_num)
         assert r.status_code == 200, 'create_event_blocks_71_object fail'
 
-    r = json.loads(r.text)
-    post_ok = r['ok']
     with allure.step('step 4: '):
+        r = json.loads(r.text)
+        post_ok = r['ok']
         assert post_ok, 'object not created'
 
-    object_id = r['result']['id']
-    r = f.get_event_blocks_71_object(tok, block_id, object_id)
     with allure.step('step 5'):
+        object_id = r['result']['id']
+        r = f.get_event_blocks_71_object(tok, block_id, object_id)
         assert r.status_code == 200, 'get_event_blocks_71_object fail'
 
-    r = json.loads(r.text)
-    find_ok = r['ok']
     with allure.step('step 6: '):
+        r = json.loads(r.text)
+        find_ok = r['ok']
         assert find_ok, 'object not found'
 
 
