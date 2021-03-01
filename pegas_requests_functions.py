@@ -174,8 +174,21 @@ def create_event_blocks_79_object(token, block_id, scanned_number):
     return r
 
 
-def get_adress_by_id(token, adress_id):
-    params = {"id": adress_id}
-    r = get_request(token, 8, f'/api/v1/addresses/get-by-id/{adress_id}', params=params)
+def get_address_by_id(token, address_id):
+    params = {"id": address_id}
+    r = get_request(token, 8, f'/api/v1/addresses/get-by-id/{address_id}', params=params)
+    return r
+
+
+def get_polygon_by_address_id(token, address_id):
+    params = {"id": address_id}
+    r = get_request(token, 8, f'/api/v1/geography/get-polygon-by-address-id/{address_id}', params=params)
+    return r
+
+
+def get_polygon_with_coordinate_by_address_id(token, address_id):
+    params = {"id": address_id}
+    r = get_request(token, 8, f'/api/v1/geography/get-polygon-with-coordinates-by-address-id/{address_id}',
+                    params=params)
     return r
 
