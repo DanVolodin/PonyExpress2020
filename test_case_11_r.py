@@ -9,29 +9,28 @@ import pegas_requests_functions as f
 
 
 def test_():
-    tok = f.get_token()
     with allure.step('step 0: '):
+        tok = f.get_token()
         assert tok != -1, 'get_token fail'
 
-    r = f.create_event_blocks_71(tok)
     with allure.step('step 1: '):
+        r = f.create_event_blocks_71(tok)
         assert r.status_code == 200, 'create_event_blocks_71 fail'
 
-    r = json.loads(r.text)
-    block_number = r['result']['number']
     with allure.step('step 2: '):
+        r = json.loads(r.text)
+        block_number = r['result']['number']
         assert block_number[0:3] == 'MOW', 'invalid block_id'
 
-    block_id = r['result']['id']
-    r = f.create_event_blocks_71_object(tok, block_id, pth.incorrect_71_block_num_2)
     with allure.step('step 3'):
+        block_id = r['result']['id']
+        r = f.create_event_blocks_71_object(tok, block_id, pth.incorrect_71_block_num_2)
         assert r.status_code == 200, 'create_event_blocks_71_object fail'
 
-    r = json.loads(r.text)
-    object_ok = r['ok']
-    fail_message = r['metadata']['message']
-    print(fail_message)
     with allure.step('step 4: '):
+        r = json.loads(r.text)
+        object_ok = r['ok']
+        fail_message = r['metadata']['message']
         assert not object_ok and \
                fail_message == 'Марка не привязана', 'object not created'
 
