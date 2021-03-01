@@ -1,6 +1,7 @@
-browser = 'Safari'
-driver_path = ''
-#For my PC 'C:\\Users\\Admin\\Downloads\\chromedriver_win32\\chromedriver.exe'
+browser = 'Chrome'
+driver_path = 'C:\\Users\\voda19\\Documents\\GitHub\\PonyExpress2020\\chromedriver.exe'
+#For my PC: 'C:\\Users\\Admin\\Downloads\\chromedriver_win32\\chromedriver.exe'
+#UG HP: 'C:\\Users\\voda19\\Documents\\GitHub\\PonyExpress2020\\chromedriver.exe'
 pegas_url = 'http://pegasus-edu.pegasus.ponyex.local/'
 logfile = 'logfile.txt'
 
@@ -21,6 +22,7 @@ random_name = 'fgnmkc1234'
 wait_time = 0
 
 destination_1 = '1202'
+destinationPointId_1202 = "4110acc0-137f-4fe6-bf69-50ee2590ded4"
 
 urls = ['http://configurations-backend-edu.pegasus.ponyex.local/', #0
         'http://couriers-backend-edu.pegasus.ponyex.local/',       #1
@@ -40,6 +42,6 @@ urls = ['http://configurations-backend-edu.pegasus.ponyex.local/', #0
 
 swagger_tail = 'api/manual/index.html'
 
-url_get_groups_list = 'http://srv-pnew-01-test.ponyex.local:1001/api/v1/user-profile-groups/get-limit/1000'
-url_group_delete = 'http://srv-pnew-01-test.ponyex.local:1001/api/v1/user-profile-groups/delete-item'
-url_group_post = 'http://srv-pnew-01-test.ponyex.local:1001/api/v1/user-profile-groups/post-item'
+url_get_groups_list = 'http://srv-pnew-02-test.ponyex.local:1001/api/v1/user-profile-groups/get-limit/1000'
+url_group_delete = 'http://srv-pnew-02-test.ponyex.local:1001/api/v1/user-profile-groups/delete-item'
+url_group_post = 'http://srv-pnew-02-test.ponyex.local:1001/api/v1/user-profile-groups/post-item'
