@@ -1,6 +1,6 @@
 browser = 'Chrome'
 driver_path = 'C:\\Users\\voda19\\Documents\\GitHub\\PonyExpress2020\\chromedriver.exe'
-#For my PC: 'C:\\Users\\Admin\\Downloads\\chromedriver_win32\\chromedriver.exe'
+#Home PC: 'C:\\Users\\Admin\\Downloads\\chromedriver_win32\\chromedriver.exe'
 #UG HP: 'C:\\Users\\voda19\\Documents\\GitHub\\PonyExpress2020\\chromedriver.exe'
 pegas_url = 'http://pegasus-edu.pegasus.ponyex.local/'
 logfile = 'logfile.txt'
@@ -16,6 +16,10 @@ incorrect_71_block_num_2 = '0012345666'
 incorrect_79_block_num = '99-9999-9999/999'
 
 correct_71_block_num = '11-1111-1111'
+
+correct_adress_id = 'ad9204fb-4007-4185-9288-503e55f66f0c'
+incorrect_adress_id = 'ad9204fb-4007-4185-9288-503e55f66fyy'
+
 
 random_name = 'fgnmkc1234'
 
