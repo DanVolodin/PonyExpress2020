@@ -375,7 +375,7 @@ def _79_included_in_consolidation_add_destination(driver):
     try:
         tick_box_button = WebDriverWait(driver, 10).until(
             EC.visibility_of_element_located((By.XPATH,
-            '/html/body/div[4]/div/div[2]/div/div[2]/div/div/div[2]/div[2]/div/div[1]/p/label')))
+            '/html/body/div[4]/div/div[2]/div/div[2]/div/div/div[2]/div[2]/div/div[1]/p/label/span')))
 
         tick_box_button.click()
 
