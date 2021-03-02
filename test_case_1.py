@@ -13,7 +13,6 @@ import login
 from paths import wait_time as wt
 
 
-
 def test_():
     driver = login.log_in()
 
