@@ -1,22 +1,19 @@
 import pytest
+import allure
+import pytest
 import time
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-import login
 import paths as pth
-from paths import wait_time as wt
 import functions as f
-from functions import ok
-from functions import not_ok
-from functions import step
+import login
+from paths import wait_time as wt
 
 
 def test_():
-    f.test_num(13)
-
     driver = login.log_in()
     if f.driver_off(driver):
         return
@@ -41,7 +38,7 @@ if __name__ == "__main__":
         Результат: Открылась страница «Вход в систему» с полями для ввода логина и пароля
     Шаг 2: Ввести логин пользователя в поле для логина, пароль пользователя в поле для пароля и нажать кнопку «Войти»
         Результат: Открылась «Главная страница» ПЕГАС 2.0 с кнопкой «Menu»
-    Шаг 3: Нажать последовательность кнопок «Menu» ->  «Производство» -> «Регистрация событий» -> 
+    Шаг 3: Нажать последовательность кнопок «Menu» ->  «Производство» -> «Регистрация событий» -> 
     -> «79. Включен в консолидацию»
         Результат: Открылась форма «Точка назначения»
     Шаг 4: Нажать кнопку «Выбрать»
