@@ -23,7 +23,7 @@ incorrect_adress_id = 'ad9204fb-4007-4285-9288-503e55f66f0c'
 
 random_name = 'fgnmkc1234'
 
-wait_time = 0
+wait_time = 3
 
 destination_1 = '1202'
 destinationPointId_1202 = "4110acc0-137f-4fe6-bf69-50ee2590ded4"
