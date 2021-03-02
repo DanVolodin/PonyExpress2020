@@ -1,27 +1,23 @@
 import pytest
+import allure
+import pytest
 import time
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-import login
 import paths as pth
-from paths import wait_time as wt
 import functions as f
-from functions import ok
-from functions import not_ok
-from functions import step
+import login
+from paths import wait_time as wt
 
 
 def test_():
-    f.test_num(6)
-
     driver = login.log_in()
     if f.driver_off(driver):
         return
 
-    step(3)
     try:
         driver = f.click_menu_button(driver)
         if f.driver_off(driver):
@@ -35,34 +31,28 @@ def test_():
         if f.driver_off(driver):
             raise
     except:
-        not_ok()
-        return
-    else:
-        ok()
+        f.close_driver(driver)
+        with allure.step('step 3: '):
+            assert 0, 'fail step 3'
 
-    step(4)
     try:
         driver = f.click_editing_user_groups_button(driver)
         if f.driver_off(driver):
             raise
     except:
-        not_ok()
-        return
-    else:
-        ok()
+        f.close_driver(driver)
+        with allure.step('step 4: '):
+            assert 0, 'fail step 4'
 
-    step(5)
     try:
         driver = f.click_creating_group_button(driver)
         if f.driver_off(driver):
             raise
     except:
-        not_ok()
-        return
-    else:
-        ok()
+        f.close_driver(driver)
+        with allure.step('step 5: '):
+            assert 0, 'fail step 5'
 
-    step(6)
     try:
         element_group_name = WebDriverWait(driver, 10).until(
             EC.presence_of_element_located((By.XPATH,
@@ -82,13 +72,10 @@ def test_():
         if element_editing_user_groups_page_heading.text != 'Редактирование групп пользователей':
             raise
     except:
-        not_ok()
         f.close_driver(driver)
-        return
-    else:
-        ok()
+        with allure.step('step 6: '):
+            assert 0, 'fail step 6'
 
-    step(7)
     try:
         if not f.check_group_created(driver, pth.random_name):
             raise
@@ -96,13 +83,10 @@ def test_():
         if not f.check_group_existence(driver, pth.random_name):
             raise
     except:
-        not_ok()
         f.close_driver(driver)
-        return
-    else:
-        ok()
+        with allure.step('step 7: '):
+            assert 0, 'fail step 7'
 
-    step(8)
     try:
         marker_button = WebDriverWait(driver, 10).until(
             EC.visibility_of_element_located((By.XPATH,
@@ -130,11 +114,9 @@ def test_():
         if f.check_group_existence(driver, pth.random_name):
             raise
     except:
-        not_ok()
         f.close_driver(driver)
-        return
-    else:
-        ok()
+        with allure.step('step 8: '):
+            assert 0, 'fail step 8'
 
     time.sleep(wt)
     f.close_driver(driver)
@@ -149,7 +131,7 @@ if __name__ == "__main__":
         Результат: Открылась страница «Вход в систему» с полями для ввода логина и пароля
     Шаг 2: Ввести логин пользователя в поле для логина, пароль пользователя в поле для пароля и нажать кнопку «Войти»
         Результат: Открылась «Главная страница» ПЕГАС 2.0 с кнопкой «Menu»
-    Шаг 3: Нажать последовательность кнопок «Menu» ->  «Сервис» -> «Управление» разрешениями»
+    Шаг 3: Нажать последовательность кнопок «Menu» ->  «Сервис» -> «Управление разрешениями»
         Результат: В выпавшем списке доступен пункт «Группы пользователей»
     Шаг 4: Выбрать пункт «Группы пользователей»
         Результат: Открылась форма «Редактирование групп пользователей»
