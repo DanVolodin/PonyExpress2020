@@ -151,13 +151,44 @@ def get_event_blocks_71_object(token, block_id, object_id):
     return r
 
 
-def delete_event_blocks_71_object(token, block_id, object_id):
+def delete_event_blocks_71_object(token, object_id):
     params = {"id": object_id}
-    r = delete_request(token, 6, f'/api/v1/pegasus-events71/delete-item/{block_id}', params=params)
+    r = delete_request(token, 6, f'/api/v1/pegasus-events71/delete-item/{object_id}', params=params)
     return r
 
 
-if __name__ == "__main__":
-    tok = get_token()
-    print(check_group_existence(tok, 'Бета-тестеры'))
+def create_event_blocks_79(token, point_id):
+    data = {"description": "", "destinationPointId": point_id}
+    r = post_request(token, 6, '/api/v1/event-blocks79/post-item', data=data)
+    return r
+
+
+def create_event_blocks_79_object(token, block_id, scanned_number):
+    data = {"IsRouteValidationEnabled": False,
+            "eventBlockId": block_id,
+            "pointId": "07c5c96a-6f52-428d-9332-0004c296067e",
+            "scannedNumber": scanned_number,
+            "hostname": pth.random_name
+            }
+    r = post_request(token, 6, '/api/v1/pegasus-events71/post-item', data=data)
+    return r
+
+
+def get_address_by_id(token, address_id):
+    params = {"id": address_id}
+    r = get_request(token, 8, f'/api/v1/addresses/get-by-id/{address_id}', params=params)
+    return r
+
+
+def get_polygon_by_address_id(token, address_id):
+    params = {"id": address_id}
+    r = get_request(token, 8, f'/api/v1/geography/get-polygon-by-address-id/{address_id}', params=params)
+    return r
+
+
+def get_polygon_with_coordinate_by_address_id(token, address_id):
+    params = {"id": address_id}
+    r = get_request(token, 8, f'/api/v1/geography/get-polygon-with-coordinates-by-address-id/{address_id}',
+                    params=params)
+    return r
 

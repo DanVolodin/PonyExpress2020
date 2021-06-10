@@ -1,22 +1,19 @@
 import pytest
+import allure
+import pytest
 import time
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-import login
 import paths as pth
-from paths import wait_time as wt
 import functions as f
-from functions import ok
-from functions import not_ok
-from functions import step
+import login
+from paths import wait_time as wt
 
 
 def test_():
-    f.test_num(15)
-
     driver = login.log_in()
     if f.driver_off(driver):
         return
@@ -28,7 +25,6 @@ def test_():
     except:
         return
 
-    step(8)
     try:
         full_screen_button = WebDriverWait(driver, 10).until(
             EC.visibility_of_element_located((By.XPATH,
@@ -43,12 +39,10 @@ def test_():
         if full_screen_form_heading.text != 'Полноэкранный режим':
             raise
     except:
-        not_ok()
-        return
-    else:
-        ok()
+        f.close_driver(driver)
+        with allure.step('step 8: '):
+            assert 0, 'fail step 8'
 
-    step(9)
     try:
         driver = f._79_included_in_consolidation_full_screen_enter_number(driver, pth.incorrect_79_block_num)
         if f.driver_off(driver):
@@ -67,10 +61,9 @@ def test_():
         if element_block.get_attribute('style') != 'background-color: rgb(194, 48, 48);':
             raise
     except:
-        not_ok()
-        return
-    else:
-        ok()
+        f.close_driver(driver)
+        with allure.step('step 9: '):
+            assert 0, 'fail step 9'
 
     time.sleep(wt)
     f.close_driver(driver)
@@ -85,7 +78,7 @@ if __name__ == "__main__":
         Результат: Открылась страница «Вход в систему» с полями для ввода логина и пароля
     Шаг 2: Ввести логин пользователя в поле для логина, пароль пользователя в поле для пароля и нажать кнопку «Войти»
         Результат: Открылась «Главная страница» ПЕГАС 2.0 с кнопкой «Menu»
-    Шаг 3: Нажать последовательность кнопок «Menu» ->  «Производство» -> «Регистрация событий» -> 
+    Шаг 3: Нажать последовательность кнопок «Menu» ->  «Производство»-> «Регистрация событий» -> 
     -> «79. Включен в консолидацию»
         Результат: Открылась форма «Точка назначения»
     Шаг 4: Нажать кнопку «Выбрать»

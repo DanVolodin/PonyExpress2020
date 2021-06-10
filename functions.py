@@ -1,4 +1,6 @@
 import pytest
+import allure
+import pytest
 import time
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -35,6 +37,8 @@ def driver_off(driver):
 
 
 def close_driver(driver):
+    if driver_off(driver):
+        return
     for d in driver.window_handles:
         driver.switch_to_window(d)
         driver.close()
@@ -106,7 +110,7 @@ def click_creating_group_button(driver):
         time.sleep(1)
         creating_group_button = WebDriverWait(driver, 10).until(
             EC.visibility_of_element_located((By.XPATH,
-            '//*[@id="root"]/section/section[2]/section/section/div/div/div[1]/div[1]/button[1]')))
+            '//*[@id="root"]/section/section[2]/section/section/div/div/div/div[1]/div[1]/button[1]')))
 
         creating_group_button.click()
 
@@ -257,31 +261,40 @@ def click_continue_without_courier_button(driver):
 
 
 def open_71_arrival_without_sort_page(driver):
-    step(3)
     try:
         driver = open_71_arrival_without_sort_form(driver)
         if driver_off(driver):
             raise
     except:
-        not_ok()
         close_driver(driver)
-        return 0
-    else:
-        ok()
+        with allure.step('step 3: '):
+            assert 0, 'fail step 3'
 
     time.sleep(1)
-    step(4)
     try:
         driver = click_continue_without_courier_button(driver)
         if driver_off(driver):
             raise
     except:
-        not_ok()
         return 0
-    else:
-        ok()
 
     return driver
+
+
+def _71_included_in_consolidation_enter_number(driver, block_num):
+    try:
+        driver.switch_to_window(driver.window_handles[1])
+        element_block_num = WebDriverWait(driver, 10).until(
+            EC.presence_of_element_located((By.XPATH,
+            '//*[@id="root"]/section/section[2]/section/section/div[2]/div[3]/div[2]/div/div/div[3]/form/input')))
+
+        element_block_num.send_keys(block_num)
+        element_block_num.send_keys('\n')
+    except:
+        close_driver(driver)
+        return 0
+    else:
+        return driver
 
 
 def click_79_included_in_consolidation_button(driver):
@@ -362,13 +375,13 @@ def _79_included_in_consolidation_add_destination(driver):
     try:
         tick_box_button = WebDriverWait(driver, 10).until(
             EC.visibility_of_element_located((By.XPATH,
-            '/html/body/div[4]/div/div[2]/div/div[2]/div/div[2]/div[1]/table/tbody/tr/td[1]/label')))
+            '/html/body/div[4]/div/div[2]/div/div[2]/div/div/div[2]/div[2]/div/div[1]/p/label/span')))
 
         tick_box_button.click()
 
         add_button = WebDriverWait(driver, 10).until(
             EC.visibility_of_element_located((By.XPATH,
-            '/html/body/div[4]/div/div[2]/div/div[2]/div/div[1]/div[1]/button[1]')))
+            '/div/button[1]/span')))
 
         add_button.click()
     except:
@@ -393,18 +406,15 @@ def click_79_included_in_consolidation_next_button(driver):
 
 
 def open_79_included_in_consolidation_page(driver, destination):
-    step(3)
     try:
         driver = open_79_included_in_consolidation_form(driver)
         if driver_off(driver):
             raise
     except:
-        not_ok()
-        return 0
-    else:
-        ok()
+        close_driver(driver)
+        with allure.step('step 3: '):
+            assert 0, 'fail step 3'
 
-    step(4)
     try:
         driver = click_79_included_in_consolidation_choose_destination_button(driver)
         if driver_off(driver):
@@ -417,12 +427,10 @@ def open_79_included_in_consolidation_page(driver, destination):
         if element_choose_destination_heading.text != 'Выберите точку назначения':
             raise
     except:
-        not_ok()
-        return 0
-    else:
-        ok()
+        close_driver(driver)
+        with allure.step('step 4: '):
+            assert 0, 'fail step 4'
 
-    step(5)
     try:
         driver = _79_included_in_consolidation_search_destination(driver, destination)
         if driver_off(driver):
@@ -436,12 +444,10 @@ def open_79_included_in_consolidation_page(driver, destination):
         if element_destination_number.text != destination:
             raise
     except:
-        not_ok()
-        return 0
-    else:
-        ok()
+        close_driver(driver)
+        with allure.step('step 5: '):
+            assert 0, 'fail step 5'
 
-    step(6)
     try:
         driver = _79_included_in_consolidation_add_destination(driver)
         if driver_off(driver):
@@ -453,12 +459,10 @@ def open_79_included_in_consolidation_page(driver, destination):
         if element_form_destination_heading.text != 'Точка назначения':
             raise
     except:
-        not_ok()
-        return 0
-    else:
-        ok()
+        close_driver(driver)
+        with allure.step('step 6: '):
+            assert 0, 'fail step 6'
 
-    step(7)
     time.sleep(1)
     try:
         driver = click_79_included_in_consolidation_next_button(driver)
@@ -485,10 +489,9 @@ def open_79_included_in_consolidation_page(driver, destination):
         if element_79_included_in_consolidation_page_block_number.text == '':
             raise
     except:
-        not_ok()
-        return 0
-    else:
-        ok()
+        close_driver(driver)
+        with allure.step('step 7: '):
+            assert 0, 'fail step 7'
 
     return driver
 
